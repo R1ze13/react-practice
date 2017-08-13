@@ -1,5 +1,45 @@
 .b-home {
-	& button {
+	&-submit {
 		margin-top: 15px;
+	}
+
+	&-todo {
+		margin-right: 10px;
+		font-size: 15px;
+		&.is-liked {
+			color: red;
+		}
+	}
+
+	&-btn-glyph {
+		background: white;
+		margin-left: 5px;
+		&.active,
+		&:active {
+			box-shadow: none;
+			.glyphicon {
+				&-heart,
+				&-remove {
+					color: green;
+					&:hover {
+						color: darken(forestgreen, 5%);
+					}
+				}
+			}
+		}
+		.glyphicon {
+			&-heart,
+			&-remove {
+				color: red;
+				transition: color .3s;
+				&:hover {
+					color: darken(red, 13%);
+				}
+			}
+		}
+	}
+
+	* {
+		outline: none !important
 	}
 }
