@@ -5,7 +5,8 @@ import './styles.less';
 
 function Square(props) {
 	const squareClasses = classnames('square', {
-		'is-win': props.isWin
+		'is-win': props.isWin,
+		'is-last': props.isLast
 	});
 
 	return (
@@ -18,9 +19,11 @@ function Square(props) {
 class Board extends React.Component {
 	renderSquare(i) {
 		const line = this.props.winnerLine;
+		const isLast = i === this.props.lastSquare;
 
 		return (
 			<Square
+				isLast={ isLast }
 				isWin={ isInArray(i, line) }
 				value={ this.props.squares[i] }
 				onClick={ () => this.props.onClick(i) }
@@ -58,7 +61,8 @@ class Game extends React.Component {
 		this.state = {
 			history: [
 				{
-					squares: Array(9).fill(null)
+					squares: Array(9).fill(null),
+					lastSquare: undefined
 				}
 			],
 			stepNumber: 0,
@@ -78,7 +82,8 @@ class Game extends React.Component {
 		this.setState({
 			history: history.concat([
 				{
-					squares: squares
+					squares: squares,
+					lastSquare: i
 				}
 			]),
 			stepNumber: history.length,
@@ -120,6 +125,7 @@ class Game extends React.Component {
 			<div className="game">
 				<div className="game-board">
 					<Board
+						lastSquare={ this.state.history[this.state.stepNumber].lastSquare }
 						winnerLine={ resultOfGame.winnerLine }
 						squares={ current.squares }
 						onClick={ (i) => this.handleClick(i) }
