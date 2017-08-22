@@ -1,10 +1,15 @@
 import React from 'react';
+import classnames from 'classnames';
 import './styles.less';
 
 
 function Square(props) {
+	const squareClasses = classnames('square', {
+		'is-win': props.isWin
+	});
+
 	return (
-		<button className="square" onClick={ props.onClick }>
+		<button className={ squareClasses } onClick={ props.onClick }>
 			{ props.value }
 		</button>
 	);
@@ -12,8 +17,11 @@ function Square(props) {
 
 class Board extends React.Component {
 	renderSquare(i) {
+		const line = this.props.winnerLine;
+
 		return (
 			<Square
+				isWin={ isInArray(i, line) }
 				value={ this.props.squares[i] }
 				onClick={ () => this.props.onClick(i) }
 			/>
@@ -63,7 +71,7 @@ class Game extends React.Component {
 		const current = history[history.length - 1];
 		const squares = current.squares.slice();
 
-		if (calculateWinner(squares) || squares[i])
+		if (calculateWinner(squares).winner || squares[i])
 			return;
 
 		squares[i] = this.state.xIsNext === true ? 'X' : 'O';
@@ -88,7 +96,7 @@ class Game extends React.Component {
 	render() {
 		const history = this.state.history;
 		const current = history[this.state.stepNumber];
-		const winner = calculateWinner(current.squares);
+		const resultOfGame = calculateWinner(current.squares);
 
 		const moves = history.map((step, move) => {
 			const desc = move ?
@@ -102,15 +110,17 @@ class Game extends React.Component {
 		});
 
 		let status;
-		if (winner)
-			status = 'Winner is ' + winner;
-		else
+		if (resultOfGame.winner) {
+			status = 'Winner is ' + resultOfGame.winner;
+		} else {
 			status = 'Next player is ' + (this.state.xIsNext ? 'X' : 'O');
+		}
 
 		return (
 			<div className="game">
 				<div className="game-board">
 					<Board
+						winnerLine={ resultOfGame.winnerLine }
 						squares={ current.squares }
 						onClick={ (i) => this.handleClick(i) }
 					/>
@@ -151,14 +161,26 @@ function calculateWinner(squares) {
 		[2, 4, 6]
 	];
 
-	let winner = null;
+	let resultOfGame = {
+		winner: undefined,
+		winnerLine: undefined
+	};
 
 	lines.forEach(function(line) {
 		const [a, b, c] = line;
 
-		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c])
-			return winner = squares[a];
+		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+			resultOfGame = {
+				winner: squares[a],
+				winnerLine: line
+			};
+			return resultOfGame;
+		}
 	});
 
-	return winner;
+	return resultOfGame;
+}
+
+function isInArray(value, array = []) {
+	return array.indexOf(value) > -1;
 }
