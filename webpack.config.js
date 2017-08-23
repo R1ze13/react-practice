@@ -48,6 +48,16 @@ module.exports = {
         historyApiFallback: true
     },
     module: {
+        preLoaders: [ //добавили ESlint в preloaders
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loaders: ['eslint'],
+                include: [
+                        path.resolve(__dirname, 'src'),
+                ],
+            }
+        ],
         loaders: [
             {
                 test: /\.js$/,
@@ -95,7 +105,6 @@ module.exports = {
 
 
 if (NODE_ENV == 'production') {
-    console.log('WTF');
     module.exports.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
             compress: {

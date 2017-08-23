@@ -8,11 +8,11 @@ import './styles.less';
 
 class HomePage extends React.Component {
 
-    static path = '/';
-    static propTypes = {
-    	home: PropTypes.object.isRequired,
-    	dispatch: PropTypes.func.isRequired
-    };
+	static path = '/';
+	static propTypes = {
+		home: PropTypes.object.isRequired,
+		dispatch: PropTypes.func.isRequired
+	};
 
 	constructor(props) {
 		super(props);
@@ -46,10 +46,10 @@ class HomePage extends React.Component {
 
 		return (
 			<li key={ idx }>
-                <span className={ todoClasses }>{ item.name }</span>
-                <button className='btn b-home-btn-glyph' onClick={ this.deleteTodo.bind(this, item) }><i className='glyphicon glyphicon-remove' /></button>
-                <button className={ btnClasses } onClick={ this.likeTodo.bind(this, item) }><i className='glyphicon glyphicon-heart' /></button>
-            </li>
+				<span className={ todoClasses }>{ item.name }</span>
+				<button className='btn b-home-btn-glyph' onClick={ this.deleteTodo.bind(this, item) }><i className='glyphicon glyphicon-remove' /></button>
+				<button className={ btnClasses } onClick={ this.likeTodo.bind(this, item) }><i className='glyphicon glyphicon-heart' /></button>
+			</li>
 		);
 	}
 
@@ -61,11 +61,11 @@ class HomePage extends React.Component {
 		this.props.dispatch( likeTodo(todo) );
 	}
 
-    render() {
+	render() {
 		const { todoName } = this.state;
 		const { todos, error } = this.props.home;
-        return (
-            <div className='row-fluid b-home'>
+		return (
+			<div className='row-fluid b-home'>
 				<div className='col-xs-12'>
 					<ul>
 						{ todos.map(this.renderTodos) }
@@ -79,8 +79,8 @@ class HomePage extends React.Component {
 					</div>
 				</div>
 			</div>
-        );
-    }
+		);
+	}
 
 }
 

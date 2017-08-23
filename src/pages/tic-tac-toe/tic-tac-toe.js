@@ -3,20 +3,36 @@ import classnames from 'classnames';
 import './styles.less';
 
 
-function Square(props) {
-	const squareClasses = classnames('square', {
-		'is-win': props.isWin,
-		'is-last': props.isLast
-	});
+class Square extends React.Component {
+	static propTypes = {
+		isWin: React.PropTypes.bool,
+		isLast: React.PropTypes.bool,
+		onClick: React.PropTypes.func,
+		value: React.PropTypes.string
+	};
 
-	return (
-		<button className={ squareClasses } onClick={ props.onClick }>
-			{ props.value }
-		</button>
-	);
+	render() {
+		const squareClasses = classnames('square', {
+			'is-win': this.props.isWin,
+			'is-last': this.props.isLast && !this.props.isWin
+		});
+
+		return (
+			<button className={ squareClasses } onClick={ this.props.onClick }>
+				{ this.props.value }
+			</button>
+		);
+	}
 }
 
 class Board extends React.Component {
+	static propTypes = {
+		winnerLine: React.PropTypes.array,
+		lastSquare: React.PropTypes.number,
+		onClick: React.PropTypes.func,
+		squares: React.PropTypes.array
+	};
+
 	renderSquare(i) {
 		const line = this.props.winnerLine;
 		const isLast = i === this.props.lastSquare;
@@ -123,6 +139,7 @@ class Game extends React.Component {
 
 		return (
 			<div className="game">
+				<h2 className="game-ttl">Tic Tac Toe</h2>
 				<div className="game-board">
 					<Board
 						lastSquare={ this.state.history[this.state.stepNumber].lastSquare }
@@ -148,13 +165,15 @@ export default class ticTacToePage extends React.Component {
 
 	render() {
 		return (
-			<Game />
+			<div className="game-wrapper">
+				<Game />
+			</div>
 		);
 	}
 
 }
 
-//helpers
+// helpers
 function calculateWinner(squares) {
 	const lines = [
 		[0, 1, 2],
@@ -172,7 +191,7 @@ function calculateWinner(squares) {
 		winnerLine: undefined
 	};
 
-	lines.forEach(function(line) {
+	lines.forEach((line) => {
 		const [a, b, c] = line;
 
 		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -180,7 +199,6 @@ function calculateWinner(squares) {
 				winner: squares[a],
 				winnerLine: line
 			};
-			return resultOfGame;
 		}
 	});
 
