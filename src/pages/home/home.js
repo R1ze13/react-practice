@@ -1,8 +1,15 @@
 import React, { PropTypes } from 'react';
 import Input from '../../components/ui/input/index';
+import Preloader from '../../components/ui/preloader/index.js';
 import { bindAll } from 'lodash';
 import { connect } from 'react-redux';
-import { addTodo, likeTodo, deleteTodo } from './actions';
+import {
+	addTodo,
+	likeTodo,
+	deleteTodo,
+	getTodos
+} from './actions';
+import { LSManager } from '../../utils/index';
 import classnames from 'classnames';
 import './styles.less';
 
@@ -22,6 +29,10 @@ class HomePage extends React.Component {
 		};
 
 		bindAll(this, ['renderTodos', 'inputOnChange', 'addTodo']);
+	}
+
+	componentWillMount() {
+		this.props.dispatch(getTodos());
 	}
 
 	inputOnChange(value) {
@@ -64,11 +75,17 @@ class HomePage extends React.Component {
 	render() {
 		const { todoName } = this.state;
 		const { todos, error } = this.props.home;
+
+		LSManager.set('todos', todos);
+
 		return (
 			<div className='row-fluid b-home'>
 				<div className='col-xs-12'>
 					<ul>
-						{ todos.map(this.renderTodos) }
+						{
+							todos.length === 0 ? <Preloader /> :
+							todos.map(this.renderTodos) 
+						}
 					</ul>
 					<div className='col-xs-4'>
 						<Input
