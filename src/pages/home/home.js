@@ -29,9 +29,7 @@ class HomePage extends React.Component {
 		};
 
 		bindAll(this, ['renderTodos', 'inputOnChange', 'addTodo']);
-	}
 
-	componentWillMount() {
 		this.props.dispatch(getTodos());
 	}
 
@@ -40,10 +38,7 @@ class HomePage extends React.Component {
 	}
 
 	addTodo() {
-		const { todos } = this.props.home;
-		const id = todos[todos.length - 1].id + 1;
-		const name = this.state.todoName;
-		this.props.dispatch( addTodo(id, name) );
+		this.props.dispatch( addTodo(this.props.home.todos, this.state.todoName) );
 		this.setState({ todoName: '' });
 	}
 
@@ -74,7 +69,7 @@ class HomePage extends React.Component {
 
 	render() {
 		const { todoName } = this.state;
-		const { todos, error } = this.props.home;
+		const { todos, error, isLoading } = this.props.home;
 
 		LSManager.set('todos', todos);
 
@@ -83,8 +78,11 @@ class HomePage extends React.Component {
 				<div className='col-xs-12'>
 					<ul>
 						{
-							todos.length === 0 ? <Preloader /> :
-							todos.map(this.renderTodos) 
+							isLoading
+								? <Preloader />
+								: todos.length !== 0
+									? todos.map(this.renderTodos)
+									: 'Элементов нет'
 						}
 					</ul>
 					<div className='col-xs-4'>
