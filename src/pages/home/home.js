@@ -47,7 +47,7 @@ class HomePage extends React.Component {
 			'is-liked': item.liked
 		});
 		const btnClasses = classnames('btn b-home-btn-glyph', {
-			'active': item.liked
+			'is-active': item.liked
 		});
 
 		return (

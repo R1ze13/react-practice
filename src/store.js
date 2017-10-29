@@ -16,7 +16,7 @@ function getMiddleware() {
 export default function configureStore(initialState) {
 	const store = compose(
 		getMiddleware(),
-        DevTools.instrument()
+		DevTools.instrument()
 	)(createStore)(rootReducer, initialState);
 
 	return store;

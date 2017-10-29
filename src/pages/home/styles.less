@@ -16,7 +16,7 @@
 	&-btn-glyph {
 		background: white;
 		margin-left: 5px;
-		&.active,
+		&.is-active,
 		&:active {
 			box-shadow: none;
 			.glyphicon {
@@ -32,10 +32,9 @@
 		.glyphicon {
 			&-heart,
 			&-remove {
-				color: red;
-				transition: color .3s;
+				color: black;
 				&:hover {
-					color: darken(red, 13%);
+					color: lighten(black, 13%);
 				}
 			}
 		}

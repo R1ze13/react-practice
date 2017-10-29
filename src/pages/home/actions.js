@@ -11,11 +11,10 @@ export function addTodo(todos, name) {
 		error = 'Необходимо ввести название';
 	}
 
-	const id = 1;
+	let id = 1;
 	if (todos.length) {
-		todos[todos.length - 1].id + 1;
+		id = todos[todos.length - 1].id + 1;
 	}
-
 	return {
 		type: ADD_TODO,
 		id, name, error

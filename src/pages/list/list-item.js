@@ -4,14 +4,28 @@ import { Link } from 'react-router';
 export default class ListItem extends React.Component {
 
 	static propTypes = {
-		id: PropTypes.number.isRequired
+		id: PropTypes.number.isRequired,
+		name: PropTypes.string.isRequired
 	};
 
 	render() {
 		return (
-			<li>
-				<Link to={ `/list/${this.props.id}` }>Item { this.props.id }</Link>
-			</li>
+			<tr>
+				<td>{ this.props.id }</td>
+				<td>
+					<Link to={ `/list/${this.props.id}` }>
+						{ this.props.name }
+					</Link>
+				</td>
+				<td>
+					<button type="button" className="btn btn-success">
+						<i className="glyphicon glyphicon-pencil" />
+					</button>
+					<button type="button" className="btn btn-danger">
+						<i className="glyphicon glyphicon-remove" />
+					</button>
+				</td>
+			</tr>
 		);
 	}
 

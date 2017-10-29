@@ -11,13 +11,13 @@ import ErrorPage from './pages/error/index';
 
 export default (
 	<Route component={ App } path={ App.path }>
-        <IndexRoute component={ HomePage } />
+		<IndexRoute component={ HomePage } />
 
-        { HomeRoutes }
-        { ContactRoutes }
-        { ListRoutes }
-        { ticTacToeRoutes }
-        { locationsRoutes }
+		{ HomeRoutes }
+		{ ContactRoutes }
+		{ ListRoutes }
+		{ ticTacToeRoutes }
+		{ locationsRoutes }
 
 		<Route path='*' component={ ErrorPage } />
 	</Route>
