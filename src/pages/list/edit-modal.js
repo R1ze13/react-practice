@@ -45,14 +45,16 @@ class EditModal extends React.Component {
 	}
 
 	render() {
+		const nameId = `${this.props.id}-name`;
+		const codeId = `${this.props.id}-code`;
 		return (
 			<div>
 				<div className="modal-body">
 					<p>
 						<b>ID:</b> { this.state.id }
 					</p>
-					<Input onChange={ this.changeName } value={this.state.name} />
-					<Input onChange={ this.changeLink } value={this.state.yb} />
+					<Input id={ nameId } isLabel={ true } labelText="name" onChange={ this.changeName } value={this.state.name} />
+					<Input id={ codeId } isLabel={ true } labelText="code" onChange={ this.changeLink } value={this.state.yb} />
 				</div>
 				<div className="modal-footer">
 					<button className="btn btn-default" onClick={ this.close }>close</button>

@@ -7,7 +7,10 @@ export default class Input extends React.Component {
 		value: PropTypes.string.isRequired,
 		onChange: PropTypes.func.isRequired,
 		divClasses: PropTypes.string,
-		error: PropTypes.string
+		error: PropTypes.string,
+		id: PropTypes.any,
+		isLabel: PropTypes.bool,
+		labelText: PropTypes.string
 	}
 
 	constructor(props) {
@@ -31,12 +34,14 @@ export default class Input extends React.Component {
 			'has-error': this.props.error ? true : false
 		});
 
-		const { value } = this.props;
+		const { value, id, isLabel, labelText } = this.props;
 
 		return (
 			<div className={ divClasses }>
+				{ isLabel ? <label htmlFor={ id } className="control-label">{ labelText }</label> : null }
 				<input
 					type='text'
+					id={ id }
 					value={ value }
 					onChange={ this.handleChange }
 					className='form-control'
