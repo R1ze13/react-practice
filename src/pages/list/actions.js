@@ -1,7 +1,9 @@
-// export const GET_ITEMS = 'GET_ITEMS';
-//
-// export function getItems() {
-// 	return {
-// 		type: GET_ITEMS
-// 	};
-// }
+export const EDIT_ITEM = 'EDIT_ITEM';
+
+export function editItem(item) {
+	const { id, name, yb } = item;
+	return {
+		type: EDIT_ITEM,
+		id, name, yb
+	};
+}

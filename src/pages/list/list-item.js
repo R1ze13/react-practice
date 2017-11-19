@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { openModal } from '../../components/modal/index';
 import EditModal from './edit-modal';
+import { editItem } from './actions';
 
 class ListItem extends React.Component {
 
 	static propTypes = {
 		id: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+		yb: PropTypes.string.isRequired,
 		dispatch: PropTypes.func.isRequired
 	};
 
@@ -22,7 +24,7 @@ class ListItem extends React.Component {
 		this.props.dispatch( openModal({
 			title: 'edit',
 			btnText: 'save',
-			content: <EditModal />
+			content: <EditModal id={ this.props.id } name={ this.props.name } yb={ this.props.yb } onSave={ editItem } />
 		}) );
 	}
 
