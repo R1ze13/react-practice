@@ -30,10 +30,10 @@ class Modal extends React.Component {
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-header">
-							<h5 className="modal-title">{ title }</h5>
 							<button type="button" className="close" onClick={ this.close }>
 								<span>&times;</span>
 							</button>
+							<h4 className="modal-title">{ title }</h4>
 						</div>
 						{ content }
 					</div>

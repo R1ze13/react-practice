@@ -37,7 +37,7 @@ export default class ItemDetails extends React.Component {
 	render() {
 		return (
 			<div className="row">
-				<div className="col-xs-12">
+				<div className="col-xs-10 col-xs-offset-1">
 					<div className="item-panel panel panel-primary">
 						<div className="panel panel-heading">
 							<b>{ this.state.id }</b> { this.state.name }
@@ -45,7 +45,7 @@ export default class ItemDetails extends React.Component {
 						<div className="panel panel-body">
 							<iframe
 								width="100%"
-								height="684"
+								height="484"
 								src={ `https://www.youtube.com/embed/${this.state.yb}` }
 								frameBorder="0"
 								allowFullScreen

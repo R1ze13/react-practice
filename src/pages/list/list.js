@@ -34,7 +34,7 @@ class ListPage extends React.Component {
 
 		return (
 			<div className="row">
-				<div className="col-xs-12">
+				<div className="col-xs-8 col-xs-offset-2">
 					<h3>list</h3>
 					<table className="table table-bordered table-hover">
 						<thead>
