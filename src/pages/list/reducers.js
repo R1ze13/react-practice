@@ -1,4 +1,4 @@
-import { EDIT_ITEM  } from './actions';
+import { EDIT_ITEM, ADD_ITEM  } from './actions';
 
 const initialState = {
 	items: [
@@ -36,6 +36,12 @@ function listReducer(state = initialState, action) {
 			const idx = state.items.findIndex(item => item.id === action.id);
 			state.items[idx].name = action.name;
 			state.items[idx].yb = action.yb;
+			return Object.assign({}, state, {
+				items: state.items
+			});
+		case ADD_ITEM:
+			const { id, name, yb } = action;
+			state.items.push({id, name, yb});
 			return Object.assign({}, state, {
 				items: state.items
 			});

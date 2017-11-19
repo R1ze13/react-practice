@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react';
 import { bindAll } from 'lodash';
 import ListItem from './list-item';
 import { connect } from 'react-redux';
+import { openModal } from '../../components/modal/index';
+import AddItemModal from './add-modal';
+import { addItem } from './actions';
 import './styles.less';
 
 class ListPage extends React.Component {
@@ -15,7 +18,7 @@ class ListPage extends React.Component {
 	constructor(props) {
 		super(props);
 
-		bindAll(this, ['renderItems']);
+		bindAll(this, ['renderItems', 'addItem']);
 	}
 
 	renderItems(item, idx) {
@@ -27,6 +30,17 @@ class ListPage extends React.Component {
 				yb = { item.yb }
 			/>
 		);
+	}
+
+	addItem() {
+		const { items } = this.props.list;
+		const lastItem = items[items.length - 1];
+
+		this.props.dispatch( openModal({
+			title: 'add new one',
+			btnText: 'add',
+			content: <AddItemModal lastItem={ lastItem } onSave={ addItem } />
+		}) );
 	}
 
 	render() {
@@ -48,6 +62,7 @@ class ListPage extends React.Component {
 							{ items.map(this.renderItems) }
 						</tbody>
 					</table>
+					<button type="button" className="btn btn-default" onClick={ this.addItem }>add new one</button>
 				</div>
 			</div>
 		);
