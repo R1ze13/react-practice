@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { openModal } from '../../components/modal/index';
 import EditModal from './edit-modal';
-import { editItem } from './actions';
+import { editItem, removeItem } from './actions';
 
 class ListItem extends React.Component {
 
@@ -18,6 +18,7 @@ class ListItem extends React.Component {
 		super(props);
 
 		this.edit = this.edit.bind(this);
+		this.remove = this.remove.bind(this);
 	}
 
 	edit() {
@@ -26,6 +27,10 @@ class ListItem extends React.Component {
 			btnText: 'save',
 			content: <EditModal id={ this.props.id } name={ this.props.name } yb={ this.props.yb } onSave={ editItem } />
 		}) );
+	}
+
+	remove() {
+		this.props.dispatch( removeItem(this.props.id) );
 	}
 
 	render() {
@@ -41,7 +46,7 @@ class ListItem extends React.Component {
 					<button type="button" className="btn btn-success" onClick={ this.edit }>
 						<i className="glyphicon glyphicon-pencil" />
 					</button>
-					<button type="button" className="btn btn-danger">
+					<button type="button" className="btn btn-danger" onClick={ this.remove }>
 						<i className="glyphicon glyphicon-remove" />
 					</button>
 				</td>

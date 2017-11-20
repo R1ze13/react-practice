@@ -1,4 +1,4 @@
-import { EDIT_ITEM, ADD_ITEM  } from './actions';
+import { EDIT_ITEM, ADD_ITEM, REMOVE_ITEM  } from './actions';
 
 const initialState = {
 	items: [
@@ -45,6 +45,10 @@ function listReducer(state = initialState, action) {
 			return Object.assign({}, state, {
 				items: state.items
 			});
+		case REMOVE_ITEM:
+			const itemId = action.id;
+			const items = state.items.filter(item => item.id !== itemId);
+			return Object.assign({}, state, {items});
 		default:
 			return state;
 	}
