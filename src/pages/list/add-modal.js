@@ -51,8 +51,8 @@ class AddItemModal extends React.Component {
 					<p>
 						<b>ID:</b> { this.state.id }
 					</p>
-					<Input id={ nameId } isLabel={ true } labelText="name" onChange={ this.changeName } value={ this.state.name } />
-					<Input id={ codeId } isLabel={ true } labelText="code" onChange={ this.changeLink } value={ this.state.yb } />
+					<Input id={ nameId } labelText="name" onChange={ this.changeName } value={ this.state.name } />
+					<Input id={ codeId } labelText="code" onChange={ this.changeLink } value={ this.state.yb } />
 				</div>
 				<div className="modal-footer">
 					<button className="btn btn-default" onClick={ this.close }>close</button>

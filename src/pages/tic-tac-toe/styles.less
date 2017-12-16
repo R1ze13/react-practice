@@ -1,79 +1,80 @@
 ol, ul {
-    padding-left: 30px;
+	padding-left: 30px;
 }
 
 .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
+	clear: both;
+	content: "";
+	display: table;
 }
 
 .status {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .square {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 64px;
-    height: 64px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    width: 64px;
+	background: #2c3e4f;
+	border: 1px solid #000;
+	border-radius: 0;
+	float: left;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 64px;
+	height: 64px;
+	margin-right: -1px;
+	margin-top: -1px;
+	padding: 0;
+	text-align: center;
+	width: 64px;
 }
 
 .square:nth-of-type(3n + 4) {
-    clear: left;
+	clear: left;
 }
 
 .square.is-win {
-    background: cadetblue;
-    color: lightpink;
+	background: cadetblue;
+	color: lightpink;
 }
 
 .square.is-last {
-    color: forestgreen;
-    font-size: 30px;
+	color: forestgreen;
+	font-size: 30px;
 }
 
 .square:focus {
-    outline: none;
+	outline: none;
 }
 
 .kbd-navigation .square:focus {
-    background: #ddd;
+	background: #ddd;
 }
 
 .game-wrapper {
-    padding-top: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: ~"calc(100vh - 52px)";
-    background: url('https://www.toptal.com/designers/subtlepatterns/patterns/doodles.png') center center repeat fixed;
+	padding-top: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	min-height: ~"calc(100vh - 52px)";
 }
 
 .game {
-    padding: 20px 50px 50px;
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    background: rgba(255, 255, 255, .8);
-    border-radius: 3px;
-    box-shadow: 0 0 3px black;
+	padding: 20px 50px 50px;
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
+	background: #4d5c6b;
+	border-radius: 3px;
+	box-shadow: 0 0 3px black;
 }
 
 .game-ttl {
-    width: 100%;
-    margin: 0 0 30px;
-    text-align: center;
+	width: 100%;
+	margin: 0 0 30px;
+	text-align: center;
 }
 
 .game-info {
-    margin-left: 20px;
+	margin-left: 20px;
+	min-width: 110px;
 }

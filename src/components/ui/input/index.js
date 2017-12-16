@@ -9,7 +9,6 @@ export default class Input extends React.Component {
 		divClasses: PropTypes.string,
 		error: PropTypes.string,
 		id: PropTypes.any,
-		isLabel: PropTypes.bool,
 		labelText: PropTypes.string
 	}
 
@@ -34,11 +33,11 @@ export default class Input extends React.Component {
 			'has-error': this.props.error ? true : false
 		});
 
-		const { value, id, isLabel, labelText } = this.props;
+		const { value, id, labelText } = this.props;
 
 		return (
 			<div className={ divClasses }>
-				{ isLabel ? <label htmlFor={ id } className="control-label">{ labelText }</label> : null }
+				{ labelText ? <label htmlFor={ id } className="control-label">{ labelText }</label> : null }
 				<input
 					type='text'
 					id={ id }
